@@ -5,15 +5,23 @@
 # macOS keeps the Full Disk Access grant across rebuilds (an ad-hoc signature
 # changes every build and the grant stops applying). Override with
 # SIGN_IDENTITY="<name or SHA-1>", or SIGN_IDENTITY=- for ad-hoc.
+#
+# UNIVERSAL=1 builds one binary for both Apple silicon and Intel Macs.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-swift build -c release
+if [ -n "${UNIVERSAL:-}" ]; then
+    swift build -c release --arch arm64 --arch x86_64
+    BINARY=.build/apple/Products/Release/MacTree
+else
+    swift build -c release
+    BINARY=.build/release/MacTree
+fi
 
 APP=build/MacTree.app
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp .build/release/MacTree "$APP/Contents/MacOS/MacTree"
+cp "$BINARY" "$APP/Contents/MacOS/MacTree"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 cp -R Resources/*.lproj "$APP/Contents/Resources/"
 
