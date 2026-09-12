@@ -24,6 +24,7 @@ jobs:
       - name: Build MacTree.app
         env:
           SIGN_IDENTITY: "-"
+          UNIVERSAL: "1"
           BUILD_NUMBER: ${{ github.run_number }}
         run: |
           swift --version
@@ -32,6 +33,7 @@ jobs:
 
       - name: Smoke test
         run: |
+          lipo build/MacTree.app/Contents/MacOS/MacTree -verify_arch arm64 x86_64
           build/MacTree.app/Contents/MacOS/MacTree --bench "$GITHUB_WORKSPACE/Sources"
           codesign --verify --deep --strict build/MacTree.app
 
