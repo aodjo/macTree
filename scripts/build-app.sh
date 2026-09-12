@@ -4,7 +4,9 @@
 # Signing: uses the first "Apple Development" identity in the keychain so that
 # macOS keeps the Full Disk Access grant across rebuilds (an ad-hoc signature
 # changes every build and the grant stops applying). Override with
-# SIGN_IDENTITY="<name or SHA-1>", or SIGN_IDENTITY=- for ad-hoc.
+# SIGN_IDENTITY="<name or SHA-1>", or SIGN_IDENTITY=- for ad-hoc. A
+# "Developer ID Application" identity (or HARDENED_RUNTIME=1) also enables the
+# hardened runtime and a secure timestamp, which notarization requires.
 #
 # UNIVERSAL=1 builds one binary for both Apple silicon and Intel Macs.
 set -euo pipefail
@@ -45,7 +47,11 @@ if [ -z "$IDENTITY" ]; then
     IDENTITY=$(security find-identity -v -p codesigning 2>/dev/null | awk '/"Apple Development/ { print $2; exit }')
 fi
 IDENTITY="${IDENTITY:--}"
-codesign --force --sign "$IDENTITY" "$APP"
+SIGN_FLAGS=(--force --sign "$IDENTITY")
+if [[ "$IDENTITY" == *"Developer ID"* || -n "${HARDENED_RUNTIME:-}" ]]; then
+    SIGN_FLAGS+=(--options runtime --timestamp)
+fi
+codesign "${SIGN_FLAGS[@]}" "$APP"
 if [ "$IDENTITY" = "-" ]; then
     echo "Built $APP (ad-hoc signed)"
 else
