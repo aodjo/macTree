@@ -1,0 +1,6 @@
+/* Shown by macOS when MacTree first reads a protected folder. */
+"NSDesktopFolderUsageDescription" = "디스크 공간을 무엇이 차지하는지 보여주기 위해 데스크탑의 폴더와 파일 크기를 읽습니다.";
+"NSDocumentsFolderUsageDescription" = "디스크 공간을 무엇이 차지하는지 보여주기 위해 문서 폴더의 폴더와 파일 크기를 읽습니다.";
+"NSDownloadsFolderUsageDescription" = "디스크 공간을 무엇이 차지하는지 보여주기 위해 다운로드 폴더의 폴더와 파일 크기를 읽습니다.";
+"NSRemovableVolumesUsageDescription" = "스캔하도록 선택한 외장 드라이브의 폴더와 파일 크기를 읽습니다.";
+"NSNetworkVolumesUsageDescription" = "스캔하도록 선택한 네트워크 볼륨의 폴더와 파일 크기를 읽습니다.";

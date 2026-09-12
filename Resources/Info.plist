@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>ko</string>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>MacTree</string>
+	<key>CFBundleExecutable</key>
+	<string>MacTree</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.aodjo.MacTree</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MacTree</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>15.0</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>MacTree reads folder and file sizes on your Desktop to show what is using disk space.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>MacTree reads folder and file sizes in Documents to show what is using disk space.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>MacTree reads folder and file sizes in Downloads to show what is using disk space.</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>MacTree reads folder and file sizes on removable drives you choose to scan.</string>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>MacTree reads folder and file sizes on network volumes you choose to scan.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Disk space analyzer for macOS</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Folder</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>None</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.folder</string>
+				<string>public.volume</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
