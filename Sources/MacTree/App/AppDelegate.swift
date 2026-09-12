@@ -53,7 +53,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
      * scanned.
      *
      * Debug aids: `--snapshot <out.png>` keeps the window behind other windows
-     * (no activation, no permission sheet) and saves a picture of it. With
+     * (no activation, no permission sheet) and saves a picture of it; add
+     * `--activate` to bring it to the front instead, so the toolbar and
+     * selection are drawn in their active colours (e.g. for README screenshots). With
      * `--snapshot-at <seconds>` the picture is taken at a fixed time, for
      * example to capture a scan in progress; otherwise it is taken 2.5 s after
      * the scan finishes and after the other debug arguments were applied. The
@@ -71,12 +73,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let args = CommandLine.arguments
         let snapshotPath = args.firstIndex(of: "--snapshot").flatMap { $0 + 1 < args.count ? args[$0 + 1] : nil }
-        if snapshotPath != nil {
+        if snapshotPath != nil && !args.contains("--activate") {
             wc.window?.orderBack(nil)
         } else {
             wc.showWindow(nil)
             NSApp.activate()
-            DispatchQueue.main.async { wc.requestFullDiskAccessIfNeeded() }
+            if snapshotPath == nil { DispatchQueue.main.async { wc.requestFullDiskAccessIfNeeded() } }
         }
 
         if let i = args.firstIndex(of: "--scan"), i + 1 < args.count {
