@@ -46,7 +46,8 @@
 	<key>NSNetworkVolumesUsageDescription</key>
 	<string>MacTree reads folder and file sizes on network volumes you choose to scan.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Licensed under the Apache License, Version 2.0.</string>
+	<string>Copyright 2026 Junsung Lee. All rights reserved.
+Licensed under the Apache License, Version 2.0.</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
